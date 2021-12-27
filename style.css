@@ -72,7 +72,7 @@ svg {
   display: flex;
   align-items: center;
   width: 70%;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 5rem;
 }
 
@@ -84,13 +84,13 @@ svg {
 }
 
 /* Put controls in one line */
-.controls {
+/* .controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex: 1;
   margin: 0rem 2rem;
-}
+} */
 
 /* mute button styles */
 .controls button {
@@ -101,6 +101,12 @@ svg {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.5s ease;
+}
+
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 
 /* play button */
@@ -114,8 +120,12 @@ svg {
   margin-top: 2rem;
 }
 
-select {
-  padding: 1rem;
-  font-size: 1rem;
-  margin-left: 1rem;
-} 
+/* pad animation */
+@keyframes playtrack {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
