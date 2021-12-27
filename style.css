@@ -103,6 +103,10 @@ svg {
   transition: all 0.5s ease;
 }
 
+.mute.active {
+  background: rgb(182, 182, 182);
+}
+
 select {
   padding: 0.5rem;
   font-size: 1rem;
