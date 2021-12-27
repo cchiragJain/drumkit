@@ -9,6 +9,7 @@ class DrumKit {
     this.index = 0;
     // beats per minute
     this.bpm = 150;
+    this.isPlaying = null;
   }
 
   activePad() {
@@ -27,12 +28,16 @@ class DrumKit {
       if (bar.classList.contains("active")) {
         // which type of pad is active
         if (bar.classList.contains("kick-pad")) {
+          // if we don't reset it the previous pad if higher bpm will overlap it
+          this.kickAudio.currentTime = 0;
           this.kickAudio.play();
         }
         if (bar.classList.contains("snare-pad")) {
+          this.snareAudio.currentTime = 0;
           this.snareAudio.play();
         }
         if (bar.classList.contains("hihat-pad")) {
+          this.hihatAudio.currentTime = 0;
           this.hihatAudio.play();
         }
       }
@@ -43,9 +48,25 @@ class DrumKit {
   start() {
     // *1000 because setInterval takes milliseconds
     const interval = (60 / this.bpm) * 1000;
-    setInterval(() => {
-      this.repeat();
-    }, interval);
+    // setInterval returns a specific id we can use it to stop more than one interval
+    if (!this.isPlaying) {
+      this.isPlaying = setInterval(() => {
+        this.repeat();
+      }, interval);
+    } else {
+      clearInterval(this.isPlaying);
+      this.isPlaying = null;
+    }
+  }
+
+  updateBtn() {
+    if (!this.isPlaying) {
+      this.playBtn.innerText = "Stop";
+      this.playBtn.classList.add("active");
+    } else {
+      this.playBtn.innerText = "Play";
+      this.playBtn.classList.remove("active");
+    }
   }
 }
 
@@ -59,5 +80,6 @@ drumKit.pads.forEach((pad) => {
 });
 
 drumKit.playBtn.addEventListener("click", () => {
+  drumKit.updateBtn();
   drumKit.start();
 });
