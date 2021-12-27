@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* to make sure that we click on the mute button and not the i tag */
+i,
+svg {
+  pointer-events: none;
+}
+
+/* all pads */
+.pad {
+  /* when clicked */
+  transition: all 0.5s ease;
+}
+
+/* size of pads */
+.kick-pad,
+.snare-pad,
+.hihat-pad {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+
+/* pads color inactive */
+.kick-pad {
+  background: rgb(160, 211, 224);
+}
+
+.snare-pad {
+  background: rgb(224, 160, 208);
+}
+
+.hihat-pad {
+  background: rgb(224, 194, 160);
+}
+
+/* pads color with active class */
+.kick-pad.active {
+  background: rgb(59, 197, 231);
+}
+
+.snare-pad.active {
+  background: rgb(218, 58, 178);
+}
+
+.hihat-pad.active {
+  background: rgb(241, 158, 64);
+}
+
+/* CENTERING EVERYTHING */
+.sequencer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* controls and pad flex */
+.kick-track,
+.snare-track,
+.hihat-track {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+/* all pads flex */
+.kick,
+.snare,
+.hihat {
+  display: flex;
+}
+
+/* Put controls in one line */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin: 0rem 2rem;
+}
+
+/* mute button styles */
+.controls button {
+  padding: 1rem;
+  border: none;
+  background: rgb(88, 88, 88);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+/* play button */
+.play {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background: rgb(88, 88, 88);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+select {
+  padding: 1rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+} 
