@@ -22,7 +22,20 @@ class DrumKit {
     let step = this.index % 8;
     const activeBars = document.querySelectorAll(`.b${step}`);
     activeBars.forEach((bar) => {
-      bar.style.animation = `playtrack 0.3s alternate ease-in-out`;
+      bar.style.animation = `playtrack 0.3s alternate ease-in-out 2`;
+      // check if current pad is active
+      if (bar.classList.contains("active")) {
+        // which type of pad is active
+        if (bar.classList.contains("kick-pad")) {
+          this.kickAudio.play();
+        }
+        if (bar.classList.contains("snare-pad")) {
+          this.snareAudio.play();
+        }
+        if (bar.classList.contains("hihat-pad")) {
+          this.hihatAudio.play();
+        }
+      }
     });
     this.index++;
   }
