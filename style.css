@@ -59,7 +59,7 @@ svg {
 /* CENTERING EVERYTHING */
 .sequencer {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,7 @@ select {
 
 /* play button */
 .play {
-  padding: 1rem 2rem;
+  padding: 1rem;
   font-size: 1.5rem;
   background: rgb(88, 88, 88);
   color: white;
@@ -124,6 +124,28 @@ select {
   margin-top: 2rem;
 }
 
+/* tempo */
+.tempo {
+  margin: 2rem;
+  width: 30%;
+}
+
+.tempo-slider {
+  padding: 0.1rem;
+  appearance: none;
+  /* margin: 1rem 0rem; */
+  width: 100%;
+  position: relative;
+  background: rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 2rem;
+}
+
+.tempo p {
+  font-size: 1.5rem;
+  /* margin: 2rem; */
+  text-align: center;
+}
 /* pad animation */
 @keyframes playtrack {
   from {

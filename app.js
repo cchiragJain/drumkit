@@ -15,6 +15,7 @@ class DrumKit {
     this.isPlaying = null;
     this.selects = document.querySelectorAll("select");
     this.muteBtns = document.querySelectorAll(".mute");
+    this.tempoSlider = document.querySelector(".tempo-slider");
   }
 
   activePad() {
@@ -66,7 +67,7 @@ class DrumKit {
 
   updateBtn() {
     if (!this.isPlaying) {
-      this.playBtn.innerText = "Stop";
+      this.playBtn.innerText = "Pause";
       this.playBtn.classList.add("active");
     } else {
       this.playBtn.innerText = "Play";
@@ -94,7 +95,9 @@ class DrumKit {
   mute(e) {
     const muteIndex = e.target.getAttribute("data-track");
     // console.log(muteIndex);
+    // when pressed on mute toggle the active class
     e.target.classList.toggle("active");
+    // after this check if contains active that means it is muted so lower the volume
     if (e.target.classList.contains("active")) {
       switch (muteIndex) {
         case "0":
@@ -116,9 +119,25 @@ class DrumKit {
           this.snareAudio.volume = 1;
           break;
         case "2":
-          this.hihatAudio.volume =;
+          this.hihatAudio.volume = 1;
           break;
       }
+    }
+  }
+
+  changeTempo(e) {
+    const tempoText = document.querySelector(".tempo-nr");
+    this.bpm = e.target.value;
+    tempoText.innerText = e.target.value;
+  }
+
+  updateTempo(e) {
+    // stop playing at current tempo
+    clearInterval(this.isPlaying);
+    this.isPlaying = null;
+    // if button is on play start from current value of tempo
+    if (this.playBtn.classList.contains("active")) {
+      this.start();
     }
   }
 }
@@ -147,4 +166,14 @@ drumKit.muteBtns.forEach((btn) => {
   btn.addEventListener("click", function (e) {
     drumKit.mute(e);
   });
+});
+
+// input will fire for every change
+// constant text update
+drumKit.tempoSlider.addEventListener("input", function (e) {
+  drumKit.changeTempo(e);
+});
+
+drumKit.tempoSlider.addEventListener("change", function (e) {
+  drumKit.updateTempo(e);
 });
